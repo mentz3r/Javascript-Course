@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <button>hello</button>
+    <button class="second-button">Second button</button>
+    
+    <script>
+        // String(25) <--- Преобразует число в строку
+        // Number('25') <--- Преобразует строку в число
+
+        // window <--- встроенный объект, представляющий браузер
+        window.document
+        window.console.log('window');
+        window.alert('');
+
+        console.log(document.querySelector('button').innerHTML);
+        document.querySelector('button').
+            innerHTML = 'Changed'; // dot notation можно писать в две строки, используя табуляцию.
+        document.querySelector('.second-button').
+            innerHTML = 'Changed';
+
+        const buttonElement = document.querySelector('.second-button');
+        console.log(buttonElement);
+
+        /*
+        console.log(document.title);
+        document.title = 'Changed DOM';
+
+        console.log(document.body);
+        console.log(typeof document.body);
+
+        console.log(document.body.innerHTML);
+        document.body.innerHTML = '<button>Good Job!</button>'
+        */
+
+        /*
+        document.body.innerHTML = 'hello';
+        document.title = 'Good Job!';
+        */
+    </script>
+</body>
+</html>
