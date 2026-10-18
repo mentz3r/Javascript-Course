@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booleans</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        true
+        false
+
+        console.log(5 == '5.00'); // == - приводит данные в один тип (!+).
+
+        console.log(5 === '5.00'); // === - сравнивает просто так (!==).
+
+        if (false) {
+            console.log('hello');
+        } else {
+            console.log('else');
+        }
+
+        const age = 17;
+
+        if (age >= 18) {
+            console.log('You can drive!');
+            console.log('Congrats!'); // Если в теле кода всего одна строка, то можно не писать {}. 
+        } else if (age >= 16) {
+            console.log('Almost there!');
+        } else {
+            console.log("You can't drive.");
+        }
+        */
+        
+        /*
+        console.log(true && false); // and
+        console.log(true || false ) // or
+        console.log(!true ) // not
+        */
+
+        /*
+        if (0) {
+            console.log('truthy');
+        } else {
+            console.log('falsy');
+        }
+
+        // Falsy Values: false; 0; NaN; undefined; null.
+        // Any value not on this list is truthy.
+
+        const cartQuantity = 5;
+
+        if (cartQuantity) {
+            console.log(`cart has products`);
+        }
+
+        console.log(!0);
+
+        console.log('text' / 5);
+
+        let variable1;
+        console.log(variable1);
+        */
+
+        const result = true ? 'truthy' : 'falsy';
+        console.log(result); // Ternary Operator
+
+        const message = 5 && 'hello';
+        console.log(message); // Guard Operator
+
+        const currency = undefined || 'USD';
+        console.log(currency); // Default Operator
+
+        // То же самое, что Default, но дает возможность
+        // Сделать 0 допустимым значением
+        const count = 0;
+        console.log(count ?? 10)
+
+        const user = {name: "Anna"};
+        console.log(user.address.city); // Выдаст TypeError. address --> undefiend; undefiend.city --> TypeError
+        console.log(user.address?.city); // Выдаст undefiend. ?. проверит значение address, и если оно undefiend или null, то остановится на нем же.
+
+        const user2 = {name: 'Arkadiy', address: {city: 'Berlin'}}
+        console.log(user2.address?.city);
+    </script>
+</body>
+</html>
