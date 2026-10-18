@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+    font-family: Arial;
+}
+
+button {
+    border: none;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;;
+    margin-left: 3px;
+    color: white;
+    background-color: rgb(65, 63, 63);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.operation-btn {
+    background-color: orange;
+}
+
+.clear-btn {
+    font-size: 14px
+}

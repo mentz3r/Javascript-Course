@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projectst</title>
+    <link rel="stylesheet" href="/10/css/10-dom-projects.css">
+</head>
+<body>
+    <p>Youtube Subscribe Button</p>
+    <button class="js-subscribe-button subscribe-button" onclick="subscribe()">
+        Subscribe
+    </button>
+
+    <p>Amazon Shipping Calculator</p>
+    <input class="js-cost-input cost-input" type="text" placeholder="Cost of order" onkeydown="handleCostKeydown(event)">
+    <button class="cost-button" onclick="calculateTotal()">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <script>
+
+        function handleCostKeydown(event) {
+            if (event.key === 'Enter') {
+                calculateTotal();
+            }
+        }
+
+        function subscribe() {
+            const buttonElement = document.querySelector('.js-subscribe-button');
+
+            if (buttonElement.innerText === 'Subscribe') { // innerText позволяет полчить текст без лишних пробелов
+                buttonElement.innerHTML = 'Subscribed';
+                buttonElement.classList.add('is-subscribed')
+            } else {
+                buttonElement.innerHTML = 'Subscribe';
+                buttonElement.classList.remove('is-subscribed')
+            }
+        }
+
+        function calculateTotal() {
+            let value = Number(document.querySelector('.js-cost-input').value);
+
+            if (value < 40) {
+                document.querySelector('.js-total-cost').innerHTML = '$' + (value + 10);
+            } else {
+                document.querySelector('.js-total-cost').innerHTML = '$' + value;
+            }
+
+            /// if (value < 40) {
+            ///     value += 10;
+            /// }
+            ///
+            /// document.querySelector('.js-total-cost')
+            ///     .innerHTML = `$${cost}`;
+        }
+
+    </script>
+</body>
+</html>

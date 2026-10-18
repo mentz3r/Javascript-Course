@@ -1,0 +1,49 @@
+button {
+    margin-right: 30px;
+    font-family: Arial;
+}
+/* 10a */
+.amazon-btn {
+    background-color: rgb(255, 216, 20);
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 10b */
+.uber-btn1 {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.uber-btn2 {
+    background-color: rgb(230, 230, 230);
+    font-weight: 800;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+}
+
+/* 10d */
+.genre-btn {
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.is-toggled {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

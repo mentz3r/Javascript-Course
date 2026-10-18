@@ -1,0 +1,37 @@
+body {
+    font-family: 'Arial';
+}
+
+.subscribe-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.is-subscribed {
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+.cost-input {
+    padding: 10px 5px;
+    font-size: 15px;
+}
+
+.cost-button {
+    font-size: 15px;
+    border: none;
+    background-color: green;
+    color: white;
+    padding: 12px 15px;
+    cursor: pointer;
+}
+
+.invalid-str {
+    color: red;
+}
