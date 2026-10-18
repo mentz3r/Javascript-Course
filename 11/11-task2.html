@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 11l - 11m
+        
+        // function minMax(nums) {       МОЙ ВАРИАНТ
+        //     let minElement = 1000;
+        //     let maxElement = 0;
+
+        //     if (nums.length === 0) {
+        //         minElement = null; 
+        //         maxElement = null;
+        //     }
+
+        //     for (let i = 0; i < nums.length; ++i) {
+        //         if (nums[i] < minElement) {minElement = nums[i]}
+        //         if (nums[i] > maxElement) {maxElement = nums[i]}
+        //     }
+
+        //     return `min: ${minElement}, max: ${maxElement}`;
+        // }
+
+        function minMax(nums) {
+
+            const result = {
+                minEl: null,
+                maxEl: null
+            };
+
+            for (let i = 0; i < nums.length; ++i) {
+                if (result.minEl === null || nums[i] < result.minEl) {result.minEl = nums[i]}
+                if (result.maxEl === null || nums[i] > result.maxEl) {result.maxEl = nums[i]}
+            }
+
+            return result;
+        }
+
+        console.log(minMax([1, -3, 5]));
+        console.log(minMax([-2, 3, -5, 7, 10]));
+        console.log(minMax([]));
+        console.log(minMax([3]));
+
+        // 11n
+
+        function countWords(words) {
+            const result = {};
+
+            for (let i = 0; i < words.length; ++i) {
+                const key = words[i];
+                if (!result[key]) {result[key] = 1}
+                else {result[key]++}
+            }
+
+            return result;
+        }
+
+        console.log(countWords(['apple', 'grape', 'apple', 'apple', 'pineapple', 'watermelon']));
+
+
+
+    </script>
+</body>
+</html>
