@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script>
+        function updateCount() {
+            document.querySelector('.js-count').innerHTML = 0;
+        }
+
+        function increase() {
+
+            let count = Number(document.querySelector('.js-count').innerHTML);
+            
+            document.querySelector('.js-count').innerHTML = count + 1;
+        }
+
+        updateCount();
+    </script> -->
+
+    <!-- Объяснние: Uncaught TypeError: Cannot set properties of null (setting 'innerHTML')
+    at updateCount (RT-09-10-26.html:9:58)
+    at --- такую ошибку выдает консоль, и вот почему: с помощью querySelector мы обращаемся к тому элементу, который по факту еще не прогрузился, не существует, ведь кодвыполняется сверху вниз. Исправить можно либо, оставив script снизу, либо вызвать эти функции по клику.-->
+</head>
+<body>
+    <p class="js-score"></p>
+    <!-- <button onclick="increase()">+1</button> -->
+    <script>
+
+        const score = {wins: 0, losses: 0};
+
+        function addWin(score) {
+            score.wins += 1;
+        }
+
+        addWin(score);
+
+        function showScore() {
+            document.querySelector('.js-score')
+                .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}`;
+        }
+
+        showScore();
+
+        // function increase() {
+
+        //     let count = Number(document.querySelector('.js-count').innerHTML);
+            
+        //     document.querySelector('.js-count').innerHTML = count + 1;
+        // }
+
+        // function showMessage(text) {
+        //     document.querySelector('.js-msg').innerHTML = text;
+        // }
+
+
+        // function getDisplayName(user) {
+        //     return user?.name || 'Guest';
+        // }
+
+        // console.log(getDisplayName(null));
+        // console.log(getDisplayName({}));
+        // console.log(getDisplayName({name: 'Anna'}));
+        // console.log(getDisplayName({name: ''}));
+        // console.log(getDisplayName({name: null}));
+
+        // function f(s) {
+        //     return s = {n: 9};
+        // }
+
+        // let s = {n: 1};
+
+        // console.log(s.n);
+        // console.log(f(s));
+
+        const cart = {
+            items: 3, 
+            total: 30
+        };
+
+        function resetByMutation(cart) {
+            cart.items = 0;
+            cart.total = 0;
+        }
+
+        resetByMutation(cart);
+        console.log(cart);
+
+        function resetByReturn(cart) {
+            return {items: 0, total: 0};
+        }
+
+        const newCart = resetByReturn(cart);
+
+        console.log(newCart);
+
+        // Объяснение: Без переприсваивания аннулированный cart будет просто сущестсовать отдельнной ссылкой на объект в памяти, но старый cart будет также оставаться со значениями 3 и 30. Поэтому, нужно либо присвоить аннулированый карт новую переменную (newCart в моем случае), либо использовать let cart, ведь const переписывать нельзя. 
+
+        const a = {n: 1};
+        const b = a;
+        const c = {n: 1}
+        console.log(a === b, a === c);
+
+        // Объяснение: Консоль выведет true false. Первый выдает true, так как a и b ссылаются на один объект в памяти (b = a), а c это уже новый объект, который ссылается на другую ячейку памяти, хоть и имеют одинаковые значения n.
+
+        function formatDiscount(discount) {
+            if (discount === undefiend || discount == null) {
+                return 'No discount';
+            } else if (discount === 0) {
+                return '0% off';
+            } else {
+                return `${discount}% off`;
+            }
+        }
+
+        function newFormatDiscount(discount) {
+            if (discount == null) {
+                return 'No discount';
+            } else {
+                return `${discount}% off`;
+            }
+        }
+        
+        console.log(newFormatDiscount());
+        console.log(newFormatDiscount(undefined));
+        console.log(newFormatDiscount(null));
+        console.log(newFormatDiscount(0));
+        console.log(newFormatDiscount(15));
+
+
+
+    </script> 
+</body>
+</html>
