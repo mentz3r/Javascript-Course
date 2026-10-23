@@ -29,7 +29,7 @@ function renderTodoList() {
                 todoList.splice(index, 1);
                 renderTodoList();
                 saveToStorage();
-            })
+            });
         });
 }
 
