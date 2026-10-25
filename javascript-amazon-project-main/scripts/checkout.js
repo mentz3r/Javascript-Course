@@ -1,4 +1,4 @@
-import { cart, removeFromCart, calculateCartQuantity } from '../data/cart.js';
+import { cart, removeFromCart, calculateCartQuantity, updateQuantity} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -37,11 +37,13 @@ cart.forEach(cartItem => {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingProducts.id}">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProducts.id}">
                     Update
                   </span>
+                  <input class="quantity-input js-quantity-input-${matchingProducts.id}">
+                  <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingProducts.id}">Save</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProducts.id}">
                     Delete
                   </span>
@@ -111,6 +113,55 @@ document.querySelectorAll('.js-delete-link')
             container.remove();
         })
     });
+
+document.querySelectorAll('.js-update-link')
+    .forEach(link => {
+      const { productId } = link.dataset;
+
+      link.addEventListener('click', () => {
+        const updateElement = document.querySelector(`.js-cart-item-container-${productId}`);
+
+        updateElement.classList.add('is-editing-quantity');
+
+        // Тут работал еще с одной кнопкой: сделал так, чтобы при нажатии можно было и показывать, и скрывать элементы
+        
+        // if (updateElement.classList.contains('is-editing-quantity')) {
+        //   isUpdating = false; 
+        //   updateElement.classList.remove('is-editing-quantity');
+        // }
+        // else {
+        //   updateElement.classList.add('is-editing-quantity');
+        //   isUpdating = true;
+        // }
+
+      })
+    });
+
+document.querySelectorAll('.js-save-link')
+    .forEach(link => {
+      const {productId} = link.dataset;
+      
+      link.addEventListener('click', () => {
+        const updateElement = document.querySelector(`.js-cart-item-container-${productId}`);
+        const productQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
+        const productQuantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
+
+        if (productQuantity < 0 || productQuantity >= 1000) {
+          alert('Invalid product quantity !!!');
+          updateQuantity(productId, 1);
+          updateCartQuantity();
+          productQuantityLabel.innerHTML = 1;
+        } else {
+          updateQuantity(productId, productQuantity);
+          updateCartQuantity();
+          productQuantityLabel.innerHTML = productQuantity;
+        }
+        updateElement.classList.remove('is-editing-quantity');
+        document.querySelector(`.js-quantity-input-${productId}`).value = '';
+      })
+    })
+
+// РАЗОБРАТЬСЯ, КАК ДОБАВИТЬ ДВА EVENTTYPE (ЧТОБЫ РАБОТАЛО И ПО КЛИКУ, И ПРИ НАЖАТИИ ENTER) !!!!!!!!
 
 function updateCartQuantity() {
     calculateCartQuantity();
