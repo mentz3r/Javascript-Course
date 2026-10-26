@@ -14,7 +14,7 @@
 
 function getLabel(temp) {
 
-    if (temp === undefined || typeof temp === 'string') { console.log('Нет данных'); }
+    if (typeof temp !== 'number') { console.log('Нет данных'); }
 
     else if (temp < 10) { console.log('Холодно'); }
     else if (temp >= 10 && temp < 25) { console.log('Тепло'); }
@@ -72,7 +72,7 @@ function renameInPlace(user, newName) {
 }
 
 function renamed(user, newName) {
-    user = { name: newName, age: user.age };
+    return { ...user, name: newName };
 }
 
 // renameInPlace(user, 'Соня');
@@ -150,13 +150,15 @@ function render() {
         });
 }
 
+// В данном случае кнопка "знает" свой номер потому, так как индекс кнопки, совпадающий с индексами массива [names], берется из общего списка таких кнопок (querySelectorAll). Обработчик внутри forEach создаётся для каждой кнопки отдельно и запоминает свой index. Это называется замыкание.
+
 document.querySelector('.add-btn')
     .addEventListener('click', () => {
 
         const inputElement = document.querySelector('.name-input');
         let inputElementValue = inputElement.value.trim();
 
-        if (!!inputElementValue) {names.push(inputElementValue);}
+        if (inputElementValue) {names.push(inputElementValue);}
 
         inputElement.value = '';
 
