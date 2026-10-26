@@ -101,7 +101,7 @@ console.log(removeItem([], 'a'));
 function countEven(numbers) {
     // let count = 0;
 
-    // for (i = 0; i < numbers.length; ++i) {
+    // for (let i = 0; i < numbers.length; ++i) {
     //     if (numbers[i] % 2 == 0) {count++;}
     // }
 
@@ -127,10 +127,10 @@ render();
 
 function render() {
 
-    namesItem = ''
+    let namesItem = ''
 
     names.forEach((value) => {
-        html = `
+        const html = `
         <p>${value}</p>
         <button class="del-btn">Delete</button>
         `;
