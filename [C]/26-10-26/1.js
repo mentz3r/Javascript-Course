@@ -12,18 +12,23 @@
 
 // 1
 
-function getLable(temp) {
-    if (temp < 10) { console.log('Холодно'); }
+function getLabel(temp) {
+
+    if (temp === undefined || typeof temp === 'string') { console.log('Нет данных'); }
+
+    else if (temp < 10) { console.log('Холодно'); }
     else if (temp >= 10 && temp < 25) { console.log('Тепло'); }
     else if (temp >= 25) { console.log('Жарко'); }
-    else if (!Number(temp)) { console.log('Нет данных'); }
 }
 
-getLable(5);
-getLable(10);
-getLable(25);
-getLable();
-getLable('abc');
+getLabel(5);
+getLabel(0);
+getLabel('');
+getLabel('5');
+getLabel(10);
+getLabel(25);
+getLabel();
+getLabel('abc');
 
 // 2
 
@@ -46,7 +51,7 @@ console.log(formatPrice(5));
 
 // 4
 
-// Ошибка будет ReferenceError, так как message существует только в моменте вызовы функции, потому что мы его не возвращаем.
+// Ошибка будет ReferenceError, так как message существует только в моменте вызовы функции.
 
 function greeting() {
     return 'Привет'
@@ -63,11 +68,11 @@ const user = {
 };
 
 function renameInPlace(user, newName) {
-    return user.name = newName;
+    user.name = newName;
 }
 
 function renamed(user, newName) {
-    return user = { name: newName, age: user.age };
+    user = { name: newName, age: user.age };
 }
 
 // renameInPlace(user, 'Соня');
@@ -151,7 +156,7 @@ document.querySelector('.add-btn')
         const inputElement = document.querySelector('.name-input');
         let inputElementValue = inputElement.value.trim();
 
-        names.push(inputElementValue);
+        if (!!inputElementValue) {names.push(inputElementValue);}
 
         inputElement.value = '';
 
@@ -164,3 +169,6 @@ document.querySelector('.add-btn')
 function saveToStorage() {
     localStorage.setItem('names', JSON.stringify(names));
 }
+
+// a) localStorage.setItem('names', names) будет ошибкой, ведь оно принимает только str
+// б) null
