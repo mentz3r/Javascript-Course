@@ -31,15 +31,20 @@ console.log(anya, older);
 // 3
 
 function addName(names, value) {
-    if (value == 0) {return false}
+
+    const trueValue = value.trim();
+
+    if (trueValue === '') {return false}
     else {
-        names.push(value.trim());
-        return names;
+        names.push(trueValue);
+        return !!names;
     }
 }
 
 const list = ['a'];
-console.log(addName(list, '1'));
+console.log(addName(list, '    b '));
+console.log(addName(list, '0'));
+console.log(addName(list, ' 0  '));
 console.log(addName(list, '     '));
 console.log(addName(list, ' '));
 
