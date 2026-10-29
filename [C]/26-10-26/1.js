@@ -172,5 +172,5 @@ function saveToStorage() {
     localStorage.setItem('names', JSON.stringify(names));
 }
 
-// a) localStorage.setItem('names', names) будет ошибкой, ведь оно принимает только str
+// a) localStorage.setItem('names', names) превратит массив в строку, но далее на JSON.parse будут возникать проблемы
 // б) null
