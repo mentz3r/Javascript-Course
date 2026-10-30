@@ -76,10 +76,19 @@ export function renderOrderSummary() {
 
     deliveryOptions.forEach(deliveryOption => {
       const today = dayjs();
-      const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-      );
+      let { deliveryDays } = deliveryOption;
+      let deliveryDate;
+
+      let i = 1;
+      while (deliveryDays) {
+        let newDate = today.add(i, 'days');
+        i++;
+        if (newDate.format('dddd') !== 'Sunday' && newDate.format('dddd') !== 'Saturday') {
+          deliveryDays--;
+          deliveryDate = newDate;
+        }
+      }
+      
       const dateString = deliveryDate.format('dddd, MMMM D');
       const priceString = deliveryOption.priceCents === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.priceCents)} - `;
 
