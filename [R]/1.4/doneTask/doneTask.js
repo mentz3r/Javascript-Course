@@ -34,7 +34,7 @@ const isCompletedTask = (list => {
         }
     });
 
-    newList = list.filter(todoItem => todoItem.status !== 'done');
+    newList = list.filter(todoItem => todoItem.status === 'done');
 
     doneAmount = list.reduce((acc, todoItem) => {
         if (todoItem.status === 'done') { acc++; }
