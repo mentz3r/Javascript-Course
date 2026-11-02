@@ -12,9 +12,8 @@ console.log(formatName('Аня'));
 // 2
 
 function getSettings(settings) {
-    let newObject = {};
 
-    return newObject = {volume: settings.volume ?? 50, username: settings.username ?? 'Гость'};
+    return {volume: settings.volume ?? 50, username: settings.username ?? 'Гость'};
 }
 console.log(getSettings({volume: 0, username: ''}));
 console.log(getSettings({volume: 10, username: undefined}));
@@ -128,7 +127,7 @@ console.log(numb);
 const letters = ['a', 'b', 'c'];
 
 function removeAt(list, index) {
-    return list.splice(index, 1);
+    return list.splice(index, 1)[0];
 }
 
 const removed = removeAt(letters, 1);
