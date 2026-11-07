@@ -173,4 +173,132 @@ function setQuantity(cart, productId, quantity) {
     return cart;
 }
 
+function hasNegative(numbers) {
+    return numbers.some(number => number < 0);
+}
+
+function allPositive(numbers) {
+    return numbers.every(number => number > 0);
+}
+
+function allDone(todos) {
+    return todos.every(todo => todo.done);
+}
+
+function isSortedAscending(numbers) {
+    return numbers.every((number, index, numbers) => {
+        return index === 0 || number >= numbers[index - 1]
+    });
+}
+
+function sum(numbers) {
+    return numbers.reduce((acc, number) => {
+        if (numbers.length > 0) {return acc + number;}
+
+        return 1;
+    }, 0)
+}
+
+function product(numbers) {
+    return numbers.reduce((acc, number) => {
+        if (numbers.length > 0) {return acc * number};
+
+        return 1
+    }, 1);
+}
+
+function maxNumber(numbers) {
+    return numbers.reduce((acc, number) => {
+        if (acc < number) {return acc = number}
+        return acc;
+
+    }, -10000)
+}
+
+function cartTotal(items) {
+    return items.reduce((acc, item) => {
+        return acc + (item.priceCents * item.quantity);
+    }, 0);
+}
+
+function countBy(words) {
+    return words.reduce((acc, item) => {
+        if (!acc[item]) {
+            acc[item] = 1;
+        } else {
+            acc[item] += 1;
+        }
+
+        return acc;
+    }, {});
+}
+
+function groupByLength(words) {
+    return words.reduce((acc, item) => {
+        const key = item.length;
+
+        if (!acc[key]) {
+            acc[key] = [item]
+        } else {
+            acc[key].push(item);
+        }
+
+        return acc;
+    }, {})
+}
+
+function sortAscending(numbers) { 
+    const numbersCopy = numbers.slice();
+
+    return numbersCopy.sort((a, b) => a - b);
+}
+
+function sortDescending(numbers) {
+    const numbersCopy = numbers.slice();
+
+    return numbersCopy.sort((a, b) => b - a);
+}
+
+function sortByName(users) {
+    const usersCopy = users.slice();
+
+    return usersCopy.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+}
+
+function sortByLength(words) {
+    const copyWords = words.slice();
+
+    return copyWords.sort((a, b) => {
+        if (a.length !== b.length) {return a.length - b.length}
+        return a.localeCompare(b, 'en');
+    });
+}
+
+function firstN(list, n) {
+    return list.slice(0, n);
+}
+
+function removeAt(list, index) {
+    return list.splice(index, 1)[0];
+}
+
+function insertAt(list, index, value) {
+    return list.splice(index, 0, value);
+}
+
+function sumOfEvenSquares(numbers) {
+    return numbers.filter(number => number % 2 == 0)
+        .map(number => number**2)
+            .reduce((acc, number) => acc + number, 0);
+}
+
+function namesOfAdults(users) {
+    return users.filter(user => user.age >= 18).map(user => user.name);
+}
+
+function todoSummary(todos) {
+    return `${todos.filter(todo => todo.done).length} из ${todos.length} выполнено`;
+}
+
+
 
