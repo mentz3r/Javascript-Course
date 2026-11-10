@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.todolist {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+}
+
+.input__box { 
+    background-color: #F1E9D8;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.input__name {
+    border: 1px solid #701C32;
+    padding: 2px;
+}
+
+.add__btn {
+    border: none;
+    border-radius: 3px;
+    background-color: #701C32;
+    color: #F1E9D8;
+    font-weight: 500;
+    padding: 3px;
+}
+
+.todolist__box {
+    font-weight: 600;
+    min-width: 200px;
+    margin-top: 10px;
+    background-color: #F1E9D8;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.todolist__items {
+    
+}
+
+.todolist__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed #701C32;
+}
+
+.delete__btn {
+    cursor: pointer;
+    background-color: rgba(175, 8, 8, 0.155);
+    border: 1px solid #701C32;
+    border-radius: 3px;
+    padding: 3px;
+
+}
+
+.delete__btn img {
+    width: 10px;
+    height: 10px;
+}
