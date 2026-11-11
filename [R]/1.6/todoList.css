@@ -56,12 +56,18 @@
     border-bottom: 1px dashed #701C32;
 }
 
+.todolist__item__name {
+    flex: 1;
+    margin: 0 8px;
+}
+
 .delete__btn {
     cursor: pointer;
     background-color: rgba(175, 8, 8, 0.155);
     border: 1px solid #701C32;
     border-radius: 3px;
     padding: 3px;
+    margin-right: 2px;
 }
 
 .edit__btn {

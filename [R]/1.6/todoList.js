@@ -26,9 +26,9 @@ function renderTodoList() {
 
     todoList.forEach(item => {
         htmlElement += `
-            <li class='todolist__item-${item.id}'>
+            <li class='todolist__item'>
                 <input class="status__item" type="radio">
-                <p class="todolist__item__name-${item.id}">${item.name}</p>
+                <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
                 <button class="delete__btn" data-id="${item.id}">
                     <img src="images/free-icon-delete-216658.png">
                 </button>
