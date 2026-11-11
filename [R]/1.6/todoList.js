@@ -1,13 +1,17 @@
-const todoList = JSON.parse(localStorage.getItem('todos')) || [];
+let todoList = JSON.parse(localStorage.getItem('todos')) || [];
 
 renderTodoList();
 
 function loadTodos() {
     let inputElement = document.querySelector('.input__name');
     const inputValue = inputElement.value.trim();
-    const idElement = String();
+    const elementId = Math.round((Math.random() * 100000));
 
-    todoList.push({ name: inputValue, id: idElement} );
+    todoList.push({
+        name: inputValue,
+        status: 'not done',
+        id: `${elementId}`,
+    });
 
     renderTodoList();
 
@@ -22,13 +26,13 @@ function renderTodoList() {
 
     todoList.forEach(item => {
         htmlElement += `
-            <li class="todolist__item">
+            <li class='todolist__item-${item.id}'>
                 <input class="status__item" type="radio">
-                <p class="todolist__item__name">${item.name}</p>
-                <button class="delete__btn">
+                <p class="todolist__item__name-${item.id}">${item.name}</p>
+                <button class="delete__btn" data-id="${item.id}">
                     <img src="images/free-icon-delete-216658.png">
                 </button>
-                <button class="edit__btn">
+                <button class="edit__btn" data-id="${item.id}">
                     <img>
                 </button>
             </li>
@@ -38,39 +42,50 @@ function renderTodoList() {
     document.querySelector('.todolist__items').innerHTML = htmlElement;
 
     document.querySelectorAll('.delete__btn')
-    .forEach((deleteButton, index) => {
+    .forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
-            todoList.splice(index, 1);
+            removeFromList(deleteButton.dataset.id);
             renderTodoList();
             saveToStorage();
         });
     });
 
     document.querySelectorAll('.edit__btn')
-        .forEach((editButton, index) => {
+        .forEach((editButton) => {
+            const inputChangedTodo = document.createElement('input');
+            let todoName;
+
             editButton.addEventListener('click', () => {
-                if (editButton.classList.contains('save__btn')) { return; }
-                
-                editButton.classList.add('save__btn');
 
-                let todoName = document.querySelectorAll('.todolist__item__name')[index];
-                const inputChangedTodo = document.createElement('input');
+                if (editButton.classList.contains('save__btn')) {
 
-                todoName.replaceWith(inputChangedTodo);
+                    const changedTodo = inputChangedTodo.value.trim();
 
-                document.querySelectorAll('.save__btn')
-                    .forEach((saveButton) => {
-                        saveButton.addEventListener('click', () => {
-                            const changedTodo = inputChangedTodo.value.trim();
-
-                            todoList[index].name = changedTodo;
-
-                            renderTodoList();
-                            saveToStorage();
-                        });
+                    todoList.forEach(todo => {
+                        if (todo.id === editButton.dataset.id) {
+                            todo.name = changedTodo;
+                        }
                     });
+
+                    todoName.textContent = changedTodo;
+                    inputChangedTodo.replaceWith(todoName);
+                    editButton.classList.remove('save__btn');
+                    saveToStorage(); 
+                }
+                
+                else {
+                    editButton.classList.add('save__btn');
+
+                    todoName = document.querySelector(`.todolist__item__name-${editButton.dataset.id}`);
+
+                    todoName.replaceWith(inputChangedTodo);
+                }
             });
         });
+}
+
+function removeFromList(todoId) {
+    todoList = todoList.filter(todo => todo.id !== todoId);
 }
 
 function saveToStorage() {
