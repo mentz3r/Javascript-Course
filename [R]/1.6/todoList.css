@@ -62,10 +62,22 @@
     border: 1px solid #701C32;
     border-radius: 3px;
     padding: 3px;
-
 }
 
-.delete__btn img {
+.edit__btn {
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: aliceblue;
+    border: 1px solid black;
+    padding: 3px;
+}
+
+.save__btn {
+    background-color: rgba(181, 231, 132, 0.155);
+}
+
+.delete__btn img,
+.edit__btn img {
     width: 10px;
     height: 10px;
 }

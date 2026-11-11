@@ -33,7 +33,7 @@ function renderTodoList() {
                     <img src="images/free-icon-delete-216658.png">
                 </button>
                 <button class="edit__btn" data-id="${item.id}">
-                    <img>
+                    <img src="images/free-icon-edit-1159633.png">
                 </button>
             </li>
         `
@@ -70,11 +70,14 @@ function renderTodoList() {
                     todoName.textContent = changedTodo;
                     inputChangedTodo.replaceWith(todoName);
                     editButton.classList.remove('save__btn');
+                    editButton.innerHTML = '<img src="images/free-icon-edit-1159633.png">';
                     saveToStorage(); 
                 }
                 
                 else {
                     editButton.classList.add('save__btn');
+                    editButton.innerHTML = '<img src="images/free-icon-confirm-271205.png">'
+
 
                     todoName = document.querySelector(`.todolist__item__name-${editButton.dataset.id}`);
 
