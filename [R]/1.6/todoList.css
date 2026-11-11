@@ -36,7 +36,7 @@
 }
 
 .todolist__box {
-    font-weight: 600;
+    font-weight: 500;
     min-width: 200px;
     margin-top: 10px;
     background-color: #F1E9D8;
@@ -44,9 +44,9 @@
     border-radius: 5px;
 }
 
-.todolist__items {
+/* .todolist__items {
     
-}
+} */
 
 .todolist__item {
     display: flex;
