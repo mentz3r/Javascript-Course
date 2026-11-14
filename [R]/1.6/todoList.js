@@ -9,7 +9,7 @@ function loadTodos() {
 
     todoList.push({
         name: inputValue,
-        status: 'not done',
+        status: false,
         id: `${elementId}`,
     });
 
@@ -27,7 +27,7 @@ function renderTodoList() {
     todoList.forEach(item => {
         htmlElement += `
             <li class='todolist__item'>
-                <input class="status__item" type="radio">
+                <input class="status__item" type="checkbox" ${item.status ? 'checked' : ''} data-id="${item.id}">
                 <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
                 <button class="delete__btn" data-id="${item.id}">
                     <img src="images/free-icon-delete-216658.png">
@@ -47,6 +47,15 @@ function renderTodoList() {
             removeFromList(deleteButton.dataset.id);
             renderTodoList();
             saveToStorage();
+        });
+    });
+
+    document.querySelectorAll('.status__item')
+    .forEach(radio => {
+        radio.addEventListener('change', (r) => {
+            updateTodoStatus(r.target.dataset.id);
+            saveToStorage();
+            renderTodoList();
         });
     });
 
@@ -93,6 +102,14 @@ function removeFromList(todoId) {
 
 function saveToStorage() {
     localStorage.setItem('todos', JSON.stringify(todoList));
+}
+
+function updateTodoStatus(todoId) {
+    todoList.forEach(todo => {
+        if (todo.id === todoId) {
+            todo.status = !todo.status;
+        }
+    });
 }
 
 function saveTodoFromKeyboard(event) {
