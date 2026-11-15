@@ -133,16 +133,15 @@ function saveToStorage(key, list) {
 }
 
 function loadList(key) {
-    const test = localStorage.getItem(key)
     try {
-        JSON.parse(test);
-        if (!Array.isArray(JSON.parse(test))) {
-            throw error;
+        const parseData = JSON.parse(localStorage.getItem(key));
+        if (!Array.isArray(parseData)) {
+            throw new Error('распарсился не массив');
         }
-        return JSON.parse(localStorage.getItem(key));;
-    } catch (e) {
+        return parseData;
+    } catch {
         return [];
-    };
+    }
 }
 
 function updateTodoStatus(todoId) {
