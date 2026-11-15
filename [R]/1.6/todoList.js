@@ -1,4 +1,4 @@
-let todoList = JSON.parse(localStorage.getItem('todos')) || [];
+let todoList = loadList('todos');
 
 renderTodoList();
 
@@ -17,36 +17,40 @@ function loadTodos() {
 
     inputElement.value = '';
 
-    saveToStorage();
+    saveToStorage('todos', todoList); 
 }
 
 function renderTodoList() {
 
-    let htmlElement = ``;
+    const TodoListHTML = document.querySelector('.todolist__items');
+
+    TodoListHTML.textContent = '';
 
     todoList.forEach(item => {
-        htmlElement += `
-            <li class='todolist__item todolist__item-${item.id}'>
-                <input class="status__item" type="checkbox" ${item.status ? 'checked' : ''} data-id="${item.id}">
-                <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
-                <button class="delete__btn" data-id="${item.id}">
-                    <img src="images/free-icon-delete-216658.png">
-                </button>
-                <button class="edit__btn" data-id="${item.id}">
-                    <img src="images/free-icon-edit-1159633.png">
-                </button>
-            </li>
-        `
-    });
+        const li = document.createElement('li');
+        li.classList.add('todolist__item');
+        li.classList.add(`todolist__item-${item.id}`);
+        li.innerHTML = `
+            <input class="status__item" type="checkbox" ${item.status ? 'checked' : ''} data-id="${item.id}">
+            <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
+            <button class="delete__btn" data-id="${item.id}">
+                <img src="images/free-icon-delete-216658.png">
+            </button>
+            <button class="edit__btn" data-id="${item.id}">
+                <img src="images/free-icon-edit-1159633.png">
+            </button>
+        `;
 
-    document.querySelector('.todolist__items').innerHTML = htmlElement;
+        li.querySelector('.todolist__item__name').textContent = item.name;
+        TodoListHTML.append(li);
+    });
 
     document.querySelectorAll('.delete__btn')
     .forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
             removeFromList(deleteButton.dataset.id);
             renderTodoList();
-            saveToStorage();
+            saveToStorage('todos', todoList); 
         });
     });
 
@@ -54,7 +58,7 @@ function renderTodoList() {
     .forEach(radio => {
         radio.addEventListener('change', (r) => {
             updateTodoStatus(r.target.dataset.id);
-            saveToStorage();
+            saveToStorage('todos', todoList); 
             renderTodoList();
         });
     });
@@ -80,7 +84,7 @@ function renderTodoList() {
                     inputChangedTodo.replaceWith(todoName);
                     editButton.classList.remove('save__btn');
                     editButton.innerHTML = '<img src="images/free-icon-edit-1159633.png">';
-                    saveToStorage(); 
+                    saveToStorage('todos', todoList); 
                 }
                 
                 else {
@@ -100,8 +104,21 @@ function removeFromList(todoId) {
     todoList = todoList.filter(todo => todo.id !== todoId);
 }
 
-function saveToStorage() {
-    localStorage.setItem('todos', JSON.stringify(todoList));
+function saveToStorage(key, list) {
+        localStorage.setItem(key, JSON.stringify(list));
+}
+
+function loadList(key) {
+    const test = localStorage.getItem(key)
+    try {
+        JSON.parse(test);
+        if (!Array.isArray(JSON.parse(test))) {
+            throw error;
+        }
+        return JSON.parse(localStorage.getItem(key));;
+    } catch (e) {
+        return [];
+    };
 }
 
 function updateTodoStatus(todoId) {
