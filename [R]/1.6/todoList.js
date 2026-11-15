@@ -26,7 +26,7 @@ function renderTodoList() {
 
     todoList.forEach(item => {
         htmlElement += `
-            <li class='todolist__item'>
+            <li class='todolist__item todolist__item-${item.id}'>
                 <input class="status__item" type="checkbox" ${item.status ? 'checked' : ''} data-id="${item.id}">
                 <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
                 <button class="delete__btn" data-id="${item.id}">
@@ -117,6 +117,31 @@ function saveTodoFromKeyboard(event) {
         loadTodos();
     }
 }
+
+function updateRenderFilter(action) {
+    if (action !== 'all') {
+        todoList = todoList.filter(item => {
+            if (action === 'done') {
+                return item.status;
+            } else if (action === 'active') {
+                return !item.status;
+            }
+        });
+        renderTodoList();
+    } else {
+        todoList = JSON.parse(localStorage.getItem('todos')) || [];
+        renderTodoList();
+    }
+}
+
+document.querySelector('.doneItem__btn')
+    .addEventListener('click', () => {updateRenderFilter('done')});
+
+document.querySelector('.activeItem__btn')
+    .addEventListener('click', () => {updateRenderFilter('active')});
+
+document.querySelector('.allItem__btn')
+    .addEventListener('click', () => {updateRenderFilter('all')});
 
 document.querySelector('.add__btn')
     .addEventListener('click', loadTodos);

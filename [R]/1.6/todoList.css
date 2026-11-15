@@ -87,3 +87,11 @@
     width: 10px;
     height: 10px;
 }
+
+.active, .done {
+    display: none;
+}
+
+.status__item {
+    accent-color: #701C32;
+}
