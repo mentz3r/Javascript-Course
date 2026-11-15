@@ -111,7 +111,7 @@ function createHTMLElement(item, list) {
     li.classList.add(`todolist__item-${item.id}`);
     li.innerHTML = `
                 <input class="status__item" type="checkbox" ${item.status ? 'checked' : ''} data-id="${item.id}">
-                <p class="todolist__item__name todolist__item__name-${item.id}">${item.name}</p>
+                <p class="todolist__item__name todolist__item__name-${item.id}"></p>
                 <button class="delete__btn" data-id="${item.id}">
                     <img src="images/free-icon-delete-216658.png">
                 </button>
